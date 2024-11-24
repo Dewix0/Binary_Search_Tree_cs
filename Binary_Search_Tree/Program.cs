@@ -1,177 +1,198 @@
 ﻿using System;
+using System.Diagnostics;
 
-class TreeNode
+public class BinarySearchTree
 {
-    public int Key;
-    public TreeNode Left;
-    public TreeNode Right;
-
-    public TreeNode(int key)
+    // Узел дерева
+    public class Node
     {
-        Key = key;
-        Left = null;
-        Right = null;
-    }
-}
+        public int Value;
+        public Node Left;
+        public Node Right;
 
-class BinarySearchTree
-{
-    private TreeNode root;
+        public Node(int value)
+        {
+            Value = value;
+            Left = null;
+            Right = null;
+        }
+    }
+
+    private Node root;
 
     public BinarySearchTree()
     {
         root = null;
     }
 
-    // Вставка нового узла
-    public void Insert(int key)
+    // Вставка элемента
+    public void Insert(int value)
     {
-        root = InsertRecursive(root, key);
+        root = InsertRec(root, value);
     }
 
-    private TreeNode InsertRecursive(TreeNode node, int key)
+    private Node InsertRec(Node root, int value)
     {
-        if (node == null)
+        if (root == null)
         {
-            return new TreeNode(key);
+            root = new Node(value);
+            return root;
         }
-        if (key < node.Key)
+
+        if (value < root.Value)
         {
-            node.Left = InsertRecursive(node.Left, key);
+            root.Left = InsertRec(root.Left, value);
+        }
+        else if (value > root.Value)
+        {
+            root.Right = InsertRec(root.Right, value);
+        }
+
+        return root;
+    }
+
+    // Поиск элемента
+    public bool Search(int value)
+    {
+        return SearchRec(root, value);
+    }
+
+    private bool SearchRec(Node root, int value)
+    {
+        if (root == null)
+        {
+            return false;
+        }
+
+        if (value == root.Value)
+        {
+            return true;
+        }
+
+        if (value < root.Value)
+        {
+            return SearchRec(root.Left, value);
         }
         else
         {
-            node.Right = InsertRecursive(node.Right, key);
+            return SearchRec(root.Right, value);
         }
-        return node;
     }
 
-    // Поиск узла
-    public bool Search(int key)
+    // Удаление элемента
+    public void Delete(int value)
     {
-        return SearchRecursive(root, key) != null;
+        root = DeleteRec(root, value);
     }
 
-    private TreeNode SearchRecursive(TreeNode node, int key)
+    private Node DeleteRec(Node root, int value)
     {
-        if (node == null || node.Key == key)
+        if (root == null)
         {
-            return node;
-        }
-        if (key < node.Key)
-        {
-            return SearchRecursive(node.Left, key);
-        }
-        return SearchRecursive(node.Right, key);
-    }
-
-    // Удаление узла
-    public void Delete(int key)
-    {
-        root = DeleteRecursive(root, key);
-    }
-
-    private TreeNode DeleteRecursive(TreeNode node, int key)
-    {
-        if (node == null)
-        {
-            return null;
+            return root;
         }
 
-        if (key < node.Key)
+        if (value < root.Value)
         {
-            node.Left = DeleteRecursive(node.Left, key);
+            root.Left = DeleteRec(root.Left, value);
         }
-        else if (key > node.Key)
+        else if (value > root.Value)
         {
-            node.Right = DeleteRecursive(node.Right, key);
+            root.Right = DeleteRec(root.Right, value);
         }
         else
         {
-            // Узел найден
-            if (node.Left == null)
+            // Узел с одним или нулевым потомком
+            if (root.Left == null)
             {
-                return node.Right;
+                return root.Right;
             }
-            else if (node.Right == null)
+            else if (root.Right == null)
             {
-                return node.Left;
+                return root.Left;
             }
 
             // Узел с двумя потомками
-            node.Key = FindMin(node.Right).Key;
-            node.Right = DeleteRecursive(node.Right, node.Key);
+            root.Value = MinValue(root.Right);
+            root.Right = DeleteRec(root.Right, root.Value);
         }
-        return node;
+
+        return root;
     }
 
-    private TreeNode FindMin(TreeNode node)
+    private int MinValue(Node root)
     {
-        while (node.Left != null)
+        int minValue = root.Value;
+        while (root.Left != null)
         {
-            node = node.Left;
+            minValue = root.Left.Value;
+            root = root.Left;
         }
-        return node;
+        return minValue;
     }
 
-    // Обход дерева (In-Order Traversal)
+    // Для обхода дерева (например, In-Order обход)
     public void InOrderTraversal()
     {
-        InOrderTraversalRecursive(root);
-        Console.WriteLine();
+        InOrderRec(root);
     }
 
-    private void InOrderTraversalRecursive(TreeNode node)
+    private void InOrderRec(Node root)
     {
-        if (node != null)
+        if (root != null)
         {
-            InOrderTraversalRecursive(node.Left);
-            Console.Write(node.Key + " ");
-            InOrderTraversalRecursive(node.Right);
+            InOrderRec(root.Left);
+            Console.Write(root.Value + " ");
+            InOrderRec(root.Right);
         }
     }
 }
 
-// Пример использования
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Начало проверки работы дерева поиска");
-        Console.WriteLine(" ");
-        
-        Console.WriteLine("Вставим в дерево значения: 50,30,70,20,40,60,80");
-        Console.WriteLine(" ");
-        
         BinarySearchTree bst = new BinarySearchTree();
-        bst.Insert(50);
-        bst.Insert(30);
-        bst.Insert(70);
-        bst.Insert(20);
-        bst.Insert(40);
-        bst.Insert(60);
-        bst.Insert(80);
-        
-        
-        
-        Console.WriteLine("Выполним метод InOrderTraversal , чтобы элементы были по порядку");
-        Console.WriteLine(" ");
-        
-        Console.WriteLine("In-Order Traversal:");
-        bst.InOrderTraversal();
-        
-        Console.WriteLine(" ");
-        Console.WriteLine("Найдем элемент со значением 40");
 
-        Console.WriteLine("Поиск 40: " + (bst.Search(40) ? "найден" : "не найден"));
-        Console.WriteLine(" ");
-        Console.WriteLine("Теперь удалим элемент дерева со значением 40, чтобы проверить работу метода Delete и выполним поиск с по-сути новым дереавом");
-        Console.WriteLine(" ");
-        bst.Delete(40);
-        Console.WriteLine("Поиск 40: " + (bst.Search(40) ? "найден" : "не найден"));
-        
-        Console.WriteLine(" ");
-        Console.WriteLine("In-Order Traversal после удаления:");
+        // Тест 1: Вставка элементов
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        for (int i = 0; i < 1000; i++)
+        {
+            bst.Insert(i);
+        }
+        stopwatch.Stop();
+        Console.WriteLine($"Время вставки 1000 элементов: {stopwatch.ElapsedMilliseconds} мс");
+
+        // Тест 2: Поиск элемента
+        stopwatch.Restart();
+        bool found = bst.Search(500); // Ищем элемент
+        stopwatch.Stop();
+        Console.WriteLine($"Время поиска элемента 500: {stopwatch.ElapsedMilliseconds} мс");
+        Console.WriteLine($"Элемент найден: {found}");
+
+        // Тест 3: Удаление элемента
+        stopwatch.Restart();
+        bst.Delete(500); // Удаляем элемент
+        stopwatch.Stop();
+        Console.WriteLine($"Время удаления элемента 500: {stopwatch.ElapsedMilliseconds} мс");
+
+        // Тест 4: Вставка и поиск большого количества элементов
+        stopwatch.Restart();
+        for (int i = 1000; i < 5000; i++)
+        {
+            bst.Insert(i);
+        }
+        stopwatch.Stop();
+        Console.WriteLine($"Время вставки еще 4000 элементов: {stopwatch.ElapsedMilliseconds} мс");
+
+        stopwatch.Restart();
+        found = bst.Search(3500); // Ищем элемент
+        stopwatch.Stop();
+        Console.WriteLine($"Время поиска элемента 3500: {stopwatch.ElapsedMilliseconds} мс");
+        Console.WriteLine($"Элемент найден: {found}");
+
+        // Вывод всех элементов дерева
+        Console.WriteLine("Элементы дерева в порядке обхода In-Order:");
         bst.InOrderTraversal();
     }
 }
