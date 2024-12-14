@@ -146,6 +146,52 @@ public class BinarySearchTree
             InOrderRec(root.Right);
         }
     }
+    
+    public (bool, List<int>) SearchWithPath(int value)
+    {
+        List<int> path = new List<int>();
+        bool found = SearchWithPathRec(root, value, path);
+        return (found, path);
+    }
+
+    private bool SearchWithPathRec(Node root, int value, List<int> path)
+    {
+        if (root == null)
+        {
+            return false;
+        }
+
+        path.Add(root.Value); // Добавляем текущий узел в маршрут
+
+        if (value == root.Value)
+        {
+            return true;
+        }
+
+        if (value < root.Value)
+        {
+            return SearchWithPathRec(root.Left, value, path);
+        }
+        else
+        {
+            return SearchWithPathRec(root.Right, value, path);
+        }
+    }
+    
+    public void PrintTree() //Метод графического представления дерева до сортировки
+    {
+        PrintTreeRec(root, "", true);
+    }
+
+    private void PrintTreeRec(Node node, string indent, bool isRight)
+    {
+        if (node != null)
+        {
+            Console.WriteLine(indent + (isRight ? "└── " : "├── ") + node.Value);
+            PrintTreeRec(node.Left, indent + (isRight ? "    " : "│   "), false);
+            PrintTreeRec(node.Right, indent + (isRight ? "    " : "│   "), true);
+        }
+    }
 }
 
 class Program
@@ -194,5 +240,44 @@ class Program
         // Вывод всех элементов дерева
         Console.WriteLine("Элементы дерева в порядке обхода In-Order:");
         bst.InOrderTraversal();
+        Console.WriteLine("");
+        
+        //Рандомное дерево
+        
+        BinarySearchTree bst2 = new BinarySearchTree();
+        Random random = new Random();
+        
+        int numberOfNodes = 10; // Количество узлов в дереве
+        int[] randomValues = new int[numberOfNodes];
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("Генерация случайного дерева...");
+        for (int i = 0; i < numberOfNodes; i++)
+        {
+            int randomValue = random.Next(1, 10000); // Генерация случайного числа в диапазоне [1, 10000]
+            randomValues[i] = randomValue;
+            bst2.Insert(randomValue);
+        }
+        Console.WriteLine("");
+        Console.WriteLine("Графическое представления дерева до сортировки");
+        bst2.PrintTree();
+        // Выбор случайного значения для поиска
+        int targetValue = randomValues[random.Next(numberOfNodes)];
+        Console.WriteLine($"Случайное значение для поиска: {targetValue}");
+
+        // Поиск элемента
+        Stopwatch stopwatch2 = Stopwatch.StartNew();
+        var (found2, path) = bst.SearchWithPath(targetValue);
+        stopwatch2.Stop();
+
+        // Результат поиска
+        Console.WriteLine($"Элемент найден: {found}");
+        Console.WriteLine($"Маршрут до элемента: {string.Join(" -> ", path)}");
+        Console.WriteLine($"Время поиска элемента: {stopwatch.ElapsedMilliseconds} мс");
+
+        // Вывод элементов дерева (необязательно, если дерево большое)
+        Console.WriteLine("\nЭлементы дерева (In-Order Traversal):");
+        bst2.InOrderTraversal();
+        Console.WriteLine();
     }
 }

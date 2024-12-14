@@ -12,3 +12,4 @@
 /Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/obj/Debug/net8.0/Binary_Search_Tree.pdb
 /Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/obj/Debug/net8.0/Binary_Search_Tree.genruntimeconfig.cache
 /Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/obj/Debug/net8.0/ref/Binary_Search_Tree.dll
+/Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/obj/Debug/net8.0/Binary_Search_Tree.sourcelink.json
