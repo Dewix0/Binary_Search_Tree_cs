@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uZAaY89WfFc=",
+  "dgSpecHash": "Xg80IoCcMFk=",
   "success": true,
-  "projectFilePath": "/Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/Binary_Search_Tree.csproj",
-  "expectedPackageFiles": [
-    "/Users/daniil/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
-    "/Users/daniil/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
-    "/Users/daniil/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.11/microsoft.netcore.app.host.osx-arm64.8.0.11.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\oxana\\source\\repos\\Binary_Search_Tree_cs\\Binary_Search_Tree\\Binary_Search_Tree.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

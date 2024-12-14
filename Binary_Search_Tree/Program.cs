@@ -247,7 +247,7 @@ class Program
         BinarySearchTree bst2 = new BinarySearchTree();
         Random random = new Random();
         
-        int numberOfNodes = 10; // Количество узлов в дереве
+        int numberOfNodes = 5; // Количество узлов в дереве
         int[] randomValues = new int[numberOfNodes];
         Console.WriteLine("");
         Console.WriteLine("");
@@ -267,7 +267,7 @@ class Program
 
         // Поиск элемента
         Stopwatch stopwatch2 = Stopwatch.StartNew();
-        var (found2, path) = bst.SearchWithPath(targetValue);
+        var (found2, path) = bst2.SearchWithPath(targetValue);
         stopwatch2.Stop();
 
         // Результат поиска

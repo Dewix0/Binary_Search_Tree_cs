@@ -8,24 +8,26 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/Users/daniil/.nuget/packages/": {}
+    "C:\\Users\\oxana\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/Binary_Search_Tree.csproj",
+      "projectUniqueName": "C:\\Users\\oxana\\source\\repos\\Binary_Search_Tree_cs\\Binary_Search_Tree\\Binary_Search_Tree.csproj",
       "projectName": "Binary_Search_Tree",
-      "projectPath": "/Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/Binary_Search_Tree.csproj",
-      "packagesPath": "/Users/daniil/.nuget/packages/",
-      "outputPath": "/Users/daniil/Desktop/Projects/Binary_ST/Binary_Search_Tree/Binary_Search_Tree/obj/",
+      "projectPath": "C:\\Users\\oxana\\source\\repos\\Binary_Search_Tree_cs\\Binary_Search_Tree\\Binary_Search_Tree.csproj",
+      "packagesPath": "C:\\Users\\oxana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oxana\\source\\repos\\Binary_Search_Tree_cs\\Binary_Search_Tree\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/daniil/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\oxana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -42,7 +44,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -59,26 +61,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/daniil/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
